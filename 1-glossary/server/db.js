@@ -6,12 +6,17 @@ mongoose.connect('mongodb://localhost/fetcher');
 // 3. Export the models
 // 4. Import the models into any modules that need them
 
-const word = new Schema ({
+const word = new mongoose.Schema ({
   name: String,
   definition: String
 });
 
 const Word = mongoose.model('Word', word);
+
+const sampleData = Word({
+  name: 'test',
+  definition: 'a procedure intended to establish the quality, performance, or reliability of something, especially before it is taken into widespread use.'
+})
 
 let save = function(data) {
   const newWord = Word(data);
@@ -23,6 +28,8 @@ let save = function(data) {
     }
   })
 };
+
+save(sampleData);
 
 let get = function() {
   return Word.find({}).exec();
