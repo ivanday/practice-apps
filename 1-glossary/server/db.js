@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/fetcher');
 // 4. Import the models into any modules that need them
 
 const word = new mongoose.Schema ({
-  name: String,
+  name: {type: String, required: true, unique: true},
   definition: String
 });
 
@@ -42,7 +42,7 @@ let update = function(data) {
     if (err) {
       console.log(err);
     } else {
-      console.log('successfully saved');
+      console.log('successfully updated');
     }
   })
 };

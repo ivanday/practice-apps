@@ -20,7 +20,7 @@ app.get('/words', function(req, res) {
   //query the database for all words
   //send back all words
   db.get().then((response) => {
-    console.log(response);
+    //console.log(response);
     res.send(response);
   })
   //res.send('test');
