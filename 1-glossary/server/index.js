@@ -12,18 +12,35 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.static(path.join(__dirname, '../client/src')));
 
 
-app.post('/words', function(req, res) {
+app.post('/words', (req, res) => {
   //call database send with new word information
+  db.save(req.data.body).then(
+    db.get().then((response) => {
+      res.send(response);
+    })
+  )
 });
 
-app.get('/words', function(req, res) {
+app.post('/words/update', (req, res) => {
+  db.update(req.body.data).then((response) => {
+    console.log('word updated successfully');
+    res.send();
+  })
+})
+
+app.post('/words/delete', (req, res) => {
+  db.deleteWord(req.body.data).then((response) => {
+    console.log('word deleted successfully');
+    res.send();
+  })
+});
+
+app.get('/words', (req, res) => {
   //query the database for all words
   //send back all words
   db.get().then((response) => {
-    //console.log(response);
     res.send(response);
   })
-  //res.send('test');
 });
 
 

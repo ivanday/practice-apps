@@ -38,7 +38,7 @@ let get = function() {
 let update = function(data) {
   var query  = {'name': data.name};
   var newData = {'name': data.name, definition: data.definition};
-  Word.findOneAndUpdate(query, newData, {upsert: true}, (err, doc) => {
+  return Word.findOneAndUpdate(query, newData, {upsert: true}, (err, doc) => {
     if (err) {
       console.log(err);
     } else {
@@ -47,6 +47,11 @@ let update = function(data) {
   })
 };
 
+let deleteWord = function(data) {
+  return Word.deleteOne(data.name);
+}
+
 module.exports.get = get;
 module.exports.save = save;
 module.exports.update = update;
+module.exports.deleteWord = deleteWord;
