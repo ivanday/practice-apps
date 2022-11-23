@@ -16,7 +16,7 @@ app.post('/words', function(req, res) {
 });
 
 app.get('/words', function(req, res) {
-
+  res.send('test');
 });
 
 

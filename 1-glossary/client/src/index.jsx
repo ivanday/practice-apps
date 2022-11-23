@@ -1,9 +1,16 @@
-import React, {useState} from "react";
-// import { render } from "react-dom";
+import React, {useState, useEffect} from "react";
 import ReactDOM from 'react-dom';
+const axios = require('axios');
 
 function App(){
   const [words, setWords] = useState([]);
+
+  useEffect(() => {
+    axios.get('/words')
+    .then((response) => {
+      console.log(response);
+    })
+  });
 
   return (
     <div>
