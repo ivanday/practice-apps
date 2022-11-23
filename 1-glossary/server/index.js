@@ -11,13 +11,15 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.static(path.join(__dirname, '../client/src')));
 
 
-/****
- *
- *
- * Other routes here....
- *
- *
- */
+app.post('/words', function(req, res) {
+
+});
+
+app.get('/words', function(req, res) {
+
+});
+
+
 
 app.listen(PORT, (err) => {
   if (err) {
