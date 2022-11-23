@@ -14,13 +14,32 @@ const word = new Schema ({
 const Word = mongoose.model('Word', word);
 
 let save = function(data) {
-
+  const newWord = Word(data);
+  return newWord.save((err, doc) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Word inserted successfully");
+    }
+  })
 };
 
 let get = function() {
-
+  return Word.find({}).exec();
 };
 
-let update = function() {
-
+let update = function(data) {
+  var query  = {'name': data.name};
+  var newData = {'name': data.name, definition: data.definition};
+  Word.findOneAndUpdate(query, newData, {upsert: true}, (err, doc) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('successfully saved');
+    }
+  })
 };
+
+module.exports.get = get;
+module.exports.save = save;
+module.exports.update = update;
