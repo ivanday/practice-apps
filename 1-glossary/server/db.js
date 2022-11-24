@@ -22,7 +22,7 @@ let save = function(data) {
   const newWord = Word(data);
   return newWord.save((err, doc) => {
     if (err) {
-      console.log(err);
+      console.log('word already exists!');
     } else {
       console.log("Word inserted successfully");
     }
