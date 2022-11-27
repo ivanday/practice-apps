@@ -43,14 +43,8 @@ let get = function() {
 
 let update = function(data) {
   var query  = {'name': data.name};
-  var newData = {'name': data.name, definition: data.definition};
-  return Word.findOneAndUpdate(query, newData, {upsert: true}, (err, doc) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('successfully updated');
-    }
-  })
+  var newData = {definition: data.definition};
+  return Word.findOneAndUpdate(query, newData, {upsert: true});
 };
 
 let deleteWord = function(data) {

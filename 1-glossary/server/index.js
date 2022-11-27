@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const bodyParser = require('body-parser');
 const path = require("path");
 const db = require('./db.js');
 
@@ -10,6 +11,9 @@ const PORT = process.env.PORT || 4000;
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.static(path.join(__dirname, '../client/src')));
+app.use(bodyParser.json({
+  extended: true
+}));
 
 
 app.post('/words', (req, res) => {
@@ -22,7 +26,8 @@ app.post('/words', (req, res) => {
 });
 
 app.post('/words/update', (req, res) => {
-  db.update(req.body.data).then((response) => {
+  console.log(req.body);
+  db.update(req.body).then((response) => {
     console.log('word updated successfully');
     res.send();
   })
