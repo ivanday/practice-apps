@@ -16,7 +16,12 @@ const Word = mongoose.model('Word', word);
 const sampleData = Word({
   name: 'test',
   definition: 'a procedure intended to establish the quality, performance, or reliability of something, especially before it is taken into widespread use.'
-})
+});
+
+const sampleData2 = Word({
+  name: 'data',
+  definition: 'facts and statistics collected together for reference or analysis.'
+});
 
 let save = function(data) {
   const newWord = Word(data);
@@ -30,6 +35,7 @@ let save = function(data) {
 };
 
 save(sampleData);
+save(sampleData2);
 
 let get = function() {
   return Word.find({}).exec();
